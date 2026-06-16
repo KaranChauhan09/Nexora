@@ -1,0 +1,303 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-space-grotesk), 'Space Grotesk Fallback';
+  --font-mono: var(--font-source-code-pro), 'Source Code Pro Fallback';
+  --color-primary: #000000;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #F3F4F6;
+  --color-secondary-foreground: #000000;
+  --color-accent: #D1D5DB;
+  --color-accent-foreground: #000000;
+  --color-background: #FFFFFF;
+  --color-foreground: #1F2937;
+  --color-card: #F9FAFB;
+  --color-card-foreground: #1F2937;
+  --color-muted: #9CA3AF;
+  --color-muted-foreground: #D1D5DB;
+  --color-border: #E5E7EB;
+  --color-input: #F3F4F6;
+  --color-ring: #000000;
+  --color-destructive: #EF4444;
+  --radius: 0.5rem;
+}
+
+:root {
+  color-scheme: light;
+  --background: #FFFFFF;
+  --foreground: #1F2937;
+  --card: #F9FAFB;
+  --card-foreground: #1F2937;
+  --popover: #FFFFFF;
+  --popover-foreground: #1F2937;
+  --primary: #000000;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F3F4F6;
+  --secondary-foreground: #000000;
+  --muted: #6B7280;
+  --muted-foreground: #9CA3AF;
+  --accent: #D1D5DB;
+  --accent-foreground: #000000;
+  --destructive: #EF4444;
+  --border: #E5E7EB;
+  --input: #F3F4F6;
+  --ring: #000000;
+  --chart-1: #000000;
+  --chart-2: #6B7280;
+  --chart-3: #D1D5DB;
+  --chart-4: #9CA3AF;
+  --chart-5: #E5E7EB;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1F2937;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F3F4F6;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #000000;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  html {
+    @apply font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-md bg-card border border-border;
+  }
+
+  .gradient-border {
+    @apply relative;
+    background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 50%, #F3F4F6 100%);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: #FFFFFF;
+    border-radius: inherit;
+  }
+
+  .gradient-border > * {
+    @apply relative z-10;
+  }
+
+  .glow-effect {
+    @apply shadow-lg shadow-black/5;
+  }
+
+  .animated-gradient {
+    background: linear-gradient(
+      135deg,
+      #E5E7EB 0%,
+      #D1D5DB 25%,
+      #F3F4F6 50%,
+      #D1D5DB 75%,
+      #E5E7EB 100%
+    );
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Geometric animated background */
+  .geometric-bg {
+    position: relative;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+
+  .geometric-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      url('data:image/svg+xml,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="40" height="40" fill="none" stroke="%2393C5FD" stroke-width="1" opacity=".1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    animation: drift 20s linear infinite;
+    pointer-events: none;
+  }
+
+  .geometric-blocks {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    /* border: 2px solid rgba(229, 231, 235, 0.4); */
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  background: rgba(96, 165, 250, 0.15);
+  backdrop-filter: blur(12px);
+    /* background: rgba(249, 250, 251, 0.5); */
+    opacity: 0.4;
+  }
+
+  .geometric-block-1 {
+    top: 10%;
+    right: 5%;
+    animation: float-slow 15s ease-in-out infinite;
+  }
+
+  .geometric-block-2 {
+    top: 20%;
+    right: 15%;
+    width: 40px;
+    height: 40px;
+    animation: float-slower 20s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .geometric-block-3 {
+    top: 40%;
+    right: 8%;
+    width: 80px;
+    height: 80px;
+    animation: float-slow 18s ease-in-out infinite;
+    animation-delay: 4s;
+  }
+
+  .geometric-block-4 {
+    bottom: 15%;
+    right: 10%;
+    width: 50px;
+    height: 50px;
+    animation: float-slower 22s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .geometric-block-5 {
+    top: 30%;
+    right: 25%;
+    width: 35px;
+    height: 35px;
+    animation: float-slow 16s ease-in-out infinite;
+    animation-delay: 3s;
+  }
+
+ .mesh-gradient {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(196,181,253,0.10) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(165,180,252,0.08) 0%, transparent 50%);
+}
+
+ @keyframes float-slow {
+  0%,100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-40px) translateX(-20px) rotate(12deg);
+  }
+}
+
+  @keyframes float-slower {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(40px) translateX(15px);
+      opacity: 0.15;
+    }
+  }
+
+  @keyframes drift {
+    0%, 100% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(-40px) translateY(40px);
+    }
+    50% {
+      transform: translateX(-80px) translateY(0);
+    }
+    75% {
+      transform: translateX(-40px) translateY(-40px);
+    }
+  }
+}
+
+@layer utilities {
+  .bg-card {
+    @apply bg-[#F9FAFB];
+  }
+
+  .text-card-foreground {
+    @apply text-[#1F2937];
+  }
+
+  .border-border {
+    @apply border-[#E5E7EB];
+  }
+
+  .bg-primary {
+    @apply bg-black;
+  }
+
+  .text-primary {
+    @apply text-black;
+  }
+
+  .bg-muted {
+    @apply bg-[#9CA3AF];
+  }
+
+  .text-muted {
+    @apply text-[#9CA3AF];
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @layer components {
+    .scroll-fade {
+      opacity: 0;
+      animation: fade-in-up linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(2rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
